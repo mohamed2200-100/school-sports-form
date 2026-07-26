@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>المنصة المدرسية للتلاميذ - SPORTS KSA</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root{
+    --bg-1:#050a08;
+    --bg-2:#0a1410;
+    --green-1:#00ff85;
+    --green-2:#00c46a;
+    --green-glow:#00ffa3;
+    --gold:#f2c94c;
+    --line:rgba(0,255,133,0.12);
+    --bg: var(--bg-1);
+    --accent: #049156;
+    --accent2: #00c46a;
+    --accent3: #00ff85;
+    --text: #e8f6ee;
+    --muted: #7fa892;
+    --card-bg: rgba(255,255,255,0.04);
+    --border: rgba(0,255,133,0.10);
+    --blue-1:#4f8cff;
+    --blue-2:#2f5fd6;
+    --blue-glow:#6aa3ff;
+  }
+  html, body { overflow-x: hidden; max-width: 100%; height: 100%; }
+  body {
+    background: var(--bg-1);
+    color: var(--text);
+    font-family: 'Cairo', sans-serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+    width: 100%;
+    padding-bottom: 105px;
+  }
+
+  /* ===== الخلفية الخضراء التقنية ===== */
+  .bg-wrap{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100vh;
+    background:
+      radial-gradient(ellipse at 50% 45%, rgba(0,255,133,0.16) 0%, rgba(0,255,133,0.05) 30%, transparent 60%),
+      linear-gradient(180deg, var(--bg-1) 0%, #060d0a 50%, var(--bg-1) 100%);
+    overflow:hidden;
+    z-index:0;
+  }
+  .grid-layer{
+    position:absolute;
+    inset:0;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:42px 42px;
+    mask-image:radial-gradient(ellipse at center, black 0%, transparent 75%);
+    -webkit-mask-image:radial-gradient(ellipse at center, black 0%, transparent 75%);
+    opacity:0.6;
+  }
+  .circuit-layer{
+    position:absolute;
+    inset:0;
+    opacity:0.35;
+    background-repeat:repeat;
+    background-size:340px 340px;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='340' height='340' viewBox='0 0 340 340'%3E%3Cg fill='none' stroke='%2300ff85' stroke-width='1'%3E%3Cpath d='M20 20 H120 V80 H200'/%3E%3Cpath d='M20 160 H80 V260 H180 V320'/%3E%3Cpath d='M260 20 V100 H320'/%3E%3Cpath d='M240 140 H320 M280 140 V240 H200 V300'/%3E%3Ccircle cx='120' cy='80' r='4'/%3E%3Ccircle cx='200' cy='80' r='4'/%3E%3Ccircle cx='80' cy='260' r='4'/%3E%3Ccircle cx='180' cy='320' r='4'/%3E%3Ccircle cx='260' cy='100' r='4'/%3E%3Ccircle cx='320' cy='100' r='4'/%3E%3Ccircle cx='280' cy='240' r='4'/%3E%3Ccircle cx='200' cy='300' r='4'/%3E%3C/g%3E%3C/svg%3E");
+  }
+  .rings{
+    position:absolute;
+    top:38%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:520px;
+    height:520px;
+    z-index:0;
+  }
+  .rings span{
+    position:absolute;
+    inset:0;
+    border-radius:50%;
+    border:1px solid var(--green-1);
+    opacity:0.25;
+    box-shadow:0 0 25px rgba(0,255,133,0.15) inset;
+  }
+  .rings span:nth-child(1){inset:0;}
+  .rings span:nth-child(2){inset:60px; opacity:0.4;}
+  .rings span:nth-child(3){inset:120px; opacity:0.6;}
+  .rings span:nth-child(4){
+    inset:180px;
+    opacity:0.9;
+    box-shadow:0 0 40px 6px var(--green-glow);
+    background:radial-gradient(circle, rgba(0,255,163,0.25), transparent 70%);
+    animation:pulse 3s ease-in-out infinite;
+  }
+  .ksa-map{
+    position:absolute;
+    left:4%;
+    bottom:16%;
+    width:170px;
+    height:170px;
+    opacity:0.85;
+    filter:drop-shadow(0 0 8px rgba(0,255,133,0.6));
+  }
+  .skyline{
+    position:absolute;
+    left:0;
+    right:0;
+    height:140px;
+    background-repeat:repeat-x;
+    background-size:320px 140px;
+    opacity:0.5;
+  }
+  .skyline.top{
+    top:0;
+    transform:scaleY(-1);
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='140' viewBox='0 0 320 140'%3E%3Cg fill='%2300140d'%3E%3Crect x='0' y='60' width='18' height='80'/%3E%3Crect x='24' y='30' width='14' height='110'/%3E%3Crect x='46' y='70' width='20' height='70'/%3E%3Crect x='74' y='10' width='10' height='130'/%3E%3Cpolygon points='79,0 84,10 74,10'/%3E%3Crect x='92' y='50' width='16' height='90'/%3E%3Crect x='118' y='80' width='24' height='60'/%3E%3Crect x='150' y='20' width='12' height='120'/%3E%3Crect x='170' y='55' width='18' height='85'/%3E%3Crect x='196' y='0' width='8' height='140'/%3E%3Crect x='212' y='65' width='20' height='75'/%3E%3Crect x='240' y='35' width='14' height='105'/%3E%3Crect x='262' y='75' width='22' height='65'/%3E%3Crect x='292' y='15' width='10' height='125'/%3E%3C/g%3E%3C/svg%3E");
+  }
+  .skyline.bottom{
+    bottom:0;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='140' viewBox='0 0 320 140'%3E%3Cg fill='%2300140d'%3E%3Crect x='0' y='60' width='18' height='80'/%3E%3Crect x='24' y='30' width='14' height='110'/%3E%3Crect x='46' y='70' width='20' height='70'/%3E%3Crect x='74' y='10' width='10' height='130'/%3E%3Cpolygon points='79,0 84,10 74,10'/%3E%3Crect x='92' y='50' width='16' height='90'/%3E%3Crect x='118' y='80' width='24' height='60'/%3E%3Crect x='150' y='20' width='12' height='120'/%3E%3Crect x='170' y='55' width='18' height='85'/%3E%3Crect x='196' y='0' width='8' height='140'/%3E%3Crect x='212' y='65' width='20' height='75'/%3E%3Crect x='240' y='35' width='14' height='105'/%3E%3Crect x='262' y='75' width='22' height='65'/%3E%3Crect x='292' y='15' width='10' height='125'/%3E%3C/g%3E%3C/svg%3E");
+  }
+  .glow-corner{
+    position:absolute;
+    width:420px;
+    height:420px;
+    border-radius:50%;
+    filter:blur(60px);
+    opacity:0.25;
+    pointer-events:none;
+  }
+  .glow-corner.tl{ top:-140px; right:-140px; background:var(--green-1); }
+  .glow-corner.br{ bottom:-160px; left:-160px; background:var(--green-2); }
+  .particle{
+    position:absolute;
+    width:4px;
+    height:4px;
+    border-radius:50%;
+    background:var(--green-glow);
+    box-shadow:0 0 8px 2px var(--green-glow);
+    animation:float 6s ease-in-out infinite;
+  }
+  @keyframes float{
+    0%,100%{ transform:translateY(0); opacity:0.8; }
+    50%{ transform:translateY(-18px); opacity:0.3; }
+  }
+  @keyframes pulse{
+    0%,100%{ opacity:0.9; }
+    50%{ opacity:0.4; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .particle, .rings span:nth-child(4){ animation:none; }
+  }
+
+  /* ===== الشريط العلوي ===== */
+  nav {
+    position: fixed;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 48px);
+    max-width: 1200px;
+    background: rgba(6,15,10,0.80);
+    backdrop-filter: blur(14px) saturate(160%);
+    -webkit-backdrop-filter: blur(14px) saturate(160%);
+    border: 1px solid rgba(0,255,133,0.28);
+    border-radius: 50px;
+    padding: 10px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 100;
+    animation: fadeDown 0.8s ease both;
+    box-shadow: 0 8px 40px rgba(0,255,133,0.12), 0 0 0 1px rgba(0,255,133,0.06), inset 0 0 24px rgba(0,255,133,0.04);
+  }
+  .logo-wrap { display: flex; align-items: center; gap: 12px; }
+  .logo-icon {
+    width: 52px; height: 52px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .logo-icon svg { width: 100%; height: 100%; filter: drop-shadow(0 0 8px rgba(0,255,133,0.4)); }
+  .logo-text { display: flex; flex-direction: column; }
+  .logo-name { font-size: 1.05rem; font-weight: 900; color: #fff; letter-spacing: 0.5px; line-height: 1.25; }
+  .logo-sub { font-size: 0.75rem; color: var(--accent3); font-weight: 700; letter-spacing: 1px; }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: color 0.2s; position: relative; padding-bottom: 6px; }
+  .nav-links a:hover { color: #fff; }
+  .nav-links li:first-child a::after { content: ''; position: absolute; bottom: -2px; left: 50%; transform: translateX(-50%); width: 4px; height: 4px; background: var(--accent3); border-radius: 50%; box-shadow: 0 0 6px 1px var(--accent3); }
+  .btn-nav { background: transparent; color: #00ff85; border: 1px solid rgba(0,255,133,0.5); padding: 10px 26px; border-radius: 50px; font-family: 'Cairo', sans-serif; font-weight: 700; font-size: 0.88rem; cursor: pointer; transition: all 0.2s; }
+  .btn-nav:hover { background: rgba(0,255,133,0.10); transform: translateY(-1px); box-shadow: 0 0 20px rgba(0,255,133,0.25); }
+
+  /* ===== الهيرو الرئيسي ===== */
+  .hero {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 150px 40px 60px;
+    gap: 44px;
+  }
+
+  /* ===== العنوان الرئيسي ===== */
+  .select-title {
+    text-align: center;
+    animation: fadeUp 0.9s ease 0.15s both;
+  }
+  .select-title h1 {
+    font-size: 2.4rem;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.3;
+  }
+  .select-title h1 .em {
+    color: var(--accent3);
+    display: block;
+    font-size: 2.7rem;
+    text-shadow: 0 0 26px rgba(0,255,133,0.35);
+  }
+  .select-title h2 {
+    margin-top: 6px;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .select-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0 14px;
+  }
+  .select-divider span {
+    display: block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent3);
+    box-shadow: 0 0 10px 2px rgba(0,255,133,0.6);
+  }
+  .select-divider::before, .select-divider::after {
+    content: '';
+    height: 1px;
+    width: 64px;
+    background: linear-gradient(90deg, transparent, rgba(0,255,133,0.45), transparent);
+  }
+  .select-sub {
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  /* ===== بطاقات الاختيار ===== */
+  .select-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    width: 100%;
+    max-width: 800px;
+    animation: fadeUp 1s ease 0.3s both;
+  }
+  .select-card {
+    position: relative;
+    border-radius: 26px;
+    padding: 34px 26px 28px;
+    text-align: center;
+    background: rgba(255,255,255,0.04);
+    backdrop-filter: blur(18px) saturate(160%);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    transition: transform 0.35s cubic-bezier(.22,1,.36,1), box-shadow 0.35s ease, border-color 0.35s ease;
+    overflow: hidden;
+  }
+  .select-card::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: -1px;
+    width: 60%; height: 50%;
+    border-radius: 26px 0 0 0;
+    pointer-events: none;
+  }
+  .select-card:hover {
+    transform: translateY(-8px);
+  }
+  .select-card.is-green {
+    border: 1.5px solid rgba(0,255,133,0.45);
+    box-shadow: 0 24px 50px rgba(0,60,35,0.30), 0 0 0 1px rgba(0,255,133,0.08) inset;
+  }
+  .select-card.is-green::before {
+    background: radial-gradient(ellipse at 20% 10%, rgba(0,255,133,0.22) 0%, transparent 65%);
+  }
+  .select-card.is-green:hover {
+    border-color: rgba(0,255,133,0.75);
+    box-shadow: 0 30px 60px rgba(0,60,35,0.38), 0 0 30px rgba(0,255,133,0.18);
+  }
+  .select-card.is-blue {
+    border: 1.5px solid rgba(79,140,255,0.45);
+    box-shadow: 0 24px 50px rgba(10,30,70,0.30), 0 0 0 1px rgba(79,140,255,0.08) inset;
+  }
+  .select-card.is-blue::before {
+    background: radial-gradient(ellipse at 20% 10%, rgba(79,140,255,0.22) 0%, transparent 65%);
+  }
+  .select-card.is-blue:hover {
+    border-color: rgba(79,140,255,0.8);
+    box-shadow: 0 30px 60px rgba(10,30,70,0.38), 0 0 30px rgba(79,140,255,0.20);
+  }
+
+  .select-icon {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 4px;
+  }
+  .select-icon svg { width: 46px; height: 46px; fill: none; stroke-width: 1.6; }
+  .is-green .select-icon {
+    background: radial-gradient(circle at 35% 30%, rgba(0,255,133,0.20), rgba(0,255,133,0.03) 70%);
+    border: 1px solid rgba(0,255,133,0.35);
+  }
+  .is-green .select-icon svg { stroke: var(--accent3); }
+  .is-blue .select-icon {
+    background: radial-gradient(circle at 35% 30%, rgba(79,140,255,0.20), rgba(79,140,255,0.03) 70%);
+    border: 1px solid rgba(79,140,255,0.4);
+  }
+  .is-blue .select-icon svg { stroke: var(--blue-1); }
+
+  .select-card h3 {
+    font-size: 1.5rem;
+    font-weight: 900;
+  }
+  .is-green h3 { color: var(--accent3); }
+  .is-blue h3 { color: var(--blue-1); }
+
+  .select-card p {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.6;
+    max-width: 220px;
+    min-height: 44px;
+  }
+
+  .select-btn {
+    margin-top: 8px;
+    width: 100%;
+    border: none;
+    border-radius: 50px;
+    padding: 13px 20px;
+    font-family: 'Cairo', sans-serif;
+    font-weight: 800;
+    font-size: 0.92rem;
+    color: #04150d;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .select-btn.btn-green {
+    background: linear-gradient(135deg, var(--accent3), var(--accent2));
+    box-shadow: 0 10px 26px rgba(0,255,133,0.25);
+  }
+  .select-btn.btn-green:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 32px rgba(0,255,133,0.38);
+  }
+  .select-btn.btn-blue {
+    background: linear-gradient(135deg, var(--blue-1), var(--blue-2));
+    color: #eef4ff;
+    box-shadow: 0 10px 26px rgba(79,140,255,0.28);
+  }
+  .select-btn.btn-blue:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 32px rgba(79,140,255,0.40);
+  }
+
+  /* ===== اللوحة الزجاجية (معلومات الاتصال) ===== */
+  .glass-scene {
+    perspective: 1200px;
+    perspective-origin: 50% 40%;
+    width: 100%;
+    max-width: 620px;
+    animation: fadeUp 1s ease 0.45s both;
+  }
+  .glass-card {
+    position: relative;
+    width: 100%;
+    background: rgba(255,255,255,0.10);
+    backdrop-filter: blur(28px) saturate(180%) brightness(1.05);
+    -webkit-backdrop-filter: blur(28px) saturate(180%) brightness(1.05);
+    border-radius: 32px;
+    padding: 28px 24px 24px;
+    border-top: 1.5px solid rgba(0,255,133,0.55);
+    border-left: 1px solid rgba(0,255,133,0.35);
+    border-right: 1px solid rgba(0,255,133,0.18);
+    border-bottom: 1px solid rgba(0,255,133,0.12);
+    box-shadow: 0 2px 0 rgba(0,255,133,0.35) inset, 0 32px 64px rgba(0,60,35,0.35), 0 8px 24px rgba(0,60,35,0.22), 0 1px 0 rgba(0,255,133,0.25) inset;
+    transform: rotateX(4deg) rotateY(-2deg);
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(.22,1,.36,1), box-shadow 0.6s ease;
+    animation: cardEntrance 0.9s cubic-bezier(.22,1,.36,1) both;
+    cursor: default;
+  }
+  @keyframes cardEntrance {
+    from { opacity: 0; transform: rotateX(20deg) rotateY(-8deg) translateY(50px) scale(0.9); }
+    to { opacity: 1; transform: rotateX(4deg) rotateY(-2deg); }
+  }
+  .glass-card:hover {
+    transform: rotateX(1deg) rotateY(1deg) translateY(-6px);
+    box-shadow: 0 2px 0 rgba(0,255,133,0.35) inset, 0 48px 80px rgba(0,60,35,0.40), 0 16px 32px rgba(0,60,35,0.25), 0 1px 0 rgba(0,255,133,0.25) inset;
+  }
+  .glass-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 32px;
+    background: linear-gradient(115deg, transparent 20%, rgba(0,255,133,0.18) 38%, rgba(0,255,133,0.05) 48%, transparent 65%);
+    pointer-events: none;
+    animation: shimmerSweep 4.5s ease-in-out infinite;
+  }
+  @keyframes shimmerSweep {
+    0% { opacity: 0; transform: translateX(-100%) skewX(-12deg); }
+    15% { opacity: 1; }
+    45% { opacity: 1; transform: translateX(200%) skewX(-12deg); }
+    100% { opacity: 0; transform: translateX(200%) skewX(-12deg); }
+  }
+  .glass-card::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    width: 55%;
+    height: 45%;
+    background: radial-gradient(ellipse at 20% 10%, rgba(0,255,133,0.28) 0%, transparent 65%);
+    border-radius: 32px 0 0 0;
+    pointer-events: none;
+  }
+  .gc-contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 16px;
+    direction: rtl;
+    transform: translateZ(14px);
+  }
+  .gc-icon-3d {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    border-radius: 14px;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: translateZ(0) rotateX(-8deg) rotateY(6deg);
+    transition: transform 0.35s cubic-bezier(.34,1.56,.64,1), box-shadow 0.35s ease;
+    cursor: default;
+  }
+  .gc-contact-item:hover .gc-icon-3d {
+    transform: translateZ(16px) rotateX(-12deg) rotateY(10deg) scale(1.08);
+  }
+  .gc-icon-face {
+    width: 100%;
+    height: 100%;
+    border-radius: 14px;
+    background: linear-gradient(145deg, rgba(0,255,133,0.30) 0%, rgba(0,196,106,0.20) 60%, rgba(0,120,70,0.16) 100%);
+    border-top: 1.5px solid rgba(0,255,133,0.55);
+    border-left: 1px solid rgba(0,255,133,0.35);
+    border-right: 1px solid rgba(0,255,133,0.18);
+    border-bottom: 1px solid rgba(0,255,133,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    box-shadow: 0 8px 24px rgba(0,60,35,0.30), 0 2px 6px rgba(0,60,35,0.18), 0 1px 0 rgba(0,255,133,0.35) inset;
+    backdrop-filter: blur(12px);
+    position: relative;
+    overflow: hidden;
+  }
+  .gc-icon-face::before {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 5px;
+    width: 55%;
+    height: 42%;
+    background: radial-gradient(ellipse, rgba(0,255,133,0.45) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .gc-icon-3d::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 6px;
+    right: -6px;
+    height: 100%;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(0,60,35,0.25), rgba(0,60,35,0.12));
+    transform: translateZ(-8px);
+    filter: blur(3px);
+    z-index: -1;
+  }
+  .gc-contact-text {
+    display: flex;
+    flex-direction: column;
+    padding-top: 4px;
+    transform: translateZ(8px);
+  }
+  .gc-contact-label {
+    font-size: 0.62rem;
+    font-weight: 800;
+    color: var(--accent3);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 3px;
+    font-family: 'Cairo', sans-serif;
+  }
+  .gc-contact-value {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.45;
+    font-family: 'Cairo', sans-serif;
+  }
+  .gc-contact-value a {
+    color: var(--accent3);
+    text-decoration: none;
+    font-weight: 700;
+    position: relative;
+  }
+  .gc-contact-value a::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    right: 0;
+    left: 0;
+    height: 1.5px;
+    background: var(--accent3);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.25s ease;
+  }
+  .gc-contact-value a:hover::after {
+    transform: scaleX(1);
+  }
+  .gc-divider {
+    height: 1px;
+    margin: 16px 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(0,255,133,0.30) 30%, rgba(0,255,133,0.20) 70%, transparent 100%);
+    position: relative;
+    transform: translateZ(10px);
+  }
+  .gc-divider::after {
+    content: '';
+    position: absolute;
+    top: 1px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0,255,133,0.35), transparent);
+  }
+  .gc-nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 20px;
+    padding: 4px 0 8px;
+    transform: translateZ(14px);
+  }
+  .gc-nav-link {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--accent3);
+    text-decoration: none;
+    font-family: 'Cairo', sans-serif;
+    position: relative;
+    padding-bottom: 3px;
+    transition: color 0.2s ease;
+  }
+  .gc-nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 1.5px;
+    background: var(--accent3);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.25s ease;
+  }
+  .gc-nav-link:hover { color: #fff; }
+  .gc-nav-link:hover::after { transform: scaleX(1); }
+
+  @keyframes fadeDown { from { opacity:0; transform:translateX(-50%) translateY(-20px); } to { opacity:1; transform:translateX(-50%) translateY(0); } }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
+
+  /* ===================================================================
+     شريطا التمرير السفليان الثابتان
+     =================================================================== */
+  #sticky-marquees{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    z-index:999;
+    width:100%;
+    max-width:100%;
+    overflow:hidden;
+  }
+
+  .marquee-regions{
+    position:relative;
+    z-index:1;
+    background:#04100b;
+    border-top:1px solid rgba(0,255,133,0.15);
+    padding:14px 0;
+    overflow:hidden;
+    height:80px;
+    display:flex;
+    align-items:center;
+    width:100%;
+  }
+  .marquee-track{
+    display:flex;
+    animation:marquee-ltr 22s linear infinite;
+    white-space:nowrap;
+    width:max-content;
+    align-items:center;
+    gap:8px;
+    flex-shrink:0;
+    will-change:transform;
+  }
+  .region-card{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:7px 16px 7px 12px;
+    border-radius:14px;
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(0,255,133,0.10);
+    backdrop-filter:blur(8px);
+    position:relative;
+    overflow:hidden;
+    flex-shrink:0;
+    transition:border-color 0.25s, background 0.25s;
+    cursor:default;
+    min-width:150px;
+    margin:0;
+  }
+  .region-card:hover{ border-color:rgba(0,255,133,0.35); background:rgba(0,255,133,0.06); }
+  .region-card::before{
+    content:'';
+    position:absolute;
+    right:0;
+    top:20%;
+    bottom:20%;
+    width:2px;
+    border-radius:2px;
+    background:var(--card-accent, rgba(0,255,133,0.55));
+    opacity:0.7;
+  }
+  .region-icon-wrap{
+    width:38px;
+    height:38px;
+    border-radius:10px;
+    background:radial-gradient(circle at 30% 30%, rgba(0,255,133,0.24), rgba(0,255,133,0.05));
+    border:1px solid rgba(0,255,133,0.30);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+    box-shadow:0 3px 10px rgba(0,0,0,0.35);
+    position:relative;
+    z-index:1;
+  }
+  .region-icon-wrap svg{ width:19px; height:19px; }
+  .region-info{ display:flex; flex-direction:column; position:relative; z-index:1; text-align:right; }
+  .region-name{ font-size:0.95rem; font-weight:800; color:#fff; line-height:1.2; letter-spacing:0.2px; }
+  .region-tag{ font-size:0.68rem; color:rgba(127,168,146,0.9); font-weight:500; margin-top:2px; line-height:1.3; }
+
+  .marquee-features{
+    position:relative;
+    z-index:1;
+    background: linear-gradient(90deg, var(--accent), var(--green-2) 55%, var(--accent));
+    padding:14px 0;
+    overflow:hidden;
+  }
+  .marquee-track-2{
+    display:flex;
+    animation:marquee2 25s linear infinite;
+    white-space:nowrap;
+    width:max-content;
+  }
+  .feature-marquee-item{
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+    padding:0 28px;
+    font-size:0.8rem;
+    font-weight:800;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    color:#04150d;
+  }
+  .feature-marquee-dot{ color:rgba(4,21,13,0.45); font-size:0.9rem; }
+
+  @keyframes marquee2{ from { transform:translateX(-50%); } to { transform:translateX(0); } }
+  @keyframes marquee-ltr{ from { transform: translateX(0); } to { transform: translateX(-33.333%); } }
+
+  /* ===== التجاوب مع الشاشات الصغيرة ===== */
+  @media (max-width: 768px) {
+    html, body { overflow-x: hidden; width: 100%; max-width: 100%; }
+    nav {
+      top: 10px;
+      left: 50%;
+      right: auto;
+      transform: translateX(-50%);
+      width: calc(100% - 24px);
+      max-width: calc(100% - 24px);
+      padding: 10px 16px;
+      border-radius: 40px;
+      flex-wrap: nowrap;
+      overflow: hidden;
+      gap: 10px;
+    }
+    .logo-icon { width: 40px; height: 40px; }
+    .logo-name { font-size: 0.85rem; font-weight: 900; letter-spacing: 0.5px; }
+    .logo-sub { font-size: 0.65rem; }
+    .nav-links { display: none; }
+    .btn-nav { display: none; }
+
+    .hero {
+      padding: 100px 16px 40px;
+      gap: 32px;
+      min-height: auto;
+      width: 100%;
+      max-width: 100%;
+      overflow: hidden;
+    }
+
+    .select-title h1 { font-size: 1.7rem; }
+    .select-title h1 .em { font-size: 1.95rem; }
+    .select-title h2 { font-size: 0.95rem; }
+    .select-sub { font-size: 0.88rem; }
+
+    .select-cards {
+      grid-template-columns: 1fr;
+      gap: 18px;
+      max-width: 420px;
+    }
+    .select-card { padding: 26px 20px 22px; }
+    .select-icon { width: 76px; height: 76px; }
+    .select-icon svg { width: 40px; height: 40px; }
+
+    .glass-scene { max-width: 100%; }
+    .glass-card {
+      padding: 18px 14px 16px;
+      transform: none !important;
+      border-radius: 24px;
+    }
+    .gc-contact-item { gap: 10px; margin-bottom: 12px; }
+    .gc-contact-value { font-size: 0.78rem; }
+
+    .marquee-regions{ height:68px; }
+    .marquee-track{ gap:6px; }
+    .region-card{ min-width:124px; padding:5px 10px 5px 8px; gap:8px; }
+    .region-name{ font-size:0.78rem; }
+    .region-tag{ font-size:0.56rem; }
+    .region-icon-wrap{ width:30px; height:30px; border-radius:8px; }
+    .region-icon-wrap svg{ width:16px; height:16px; }
+    .feature-marquee-item{ font-size:0.7rem; padding:0 16px; }
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .hero { padding: 120px 24px 50px; }
+    .select-cards { max-width: 620px; }
+  }
+</style>
+<base target="_blank">
+</head>
+<body>
+
+<!-- ===== الخلفية الخضراء التقنية ===== -->
+<div class="bg-wrap">
+  <div class="grid-layer"></div>
+  <div class="circuit-layer"></div>
+
+  <div class="glow-corner tl"></div>
+  <div class="glow-corner br"></div>
+
+  <div class="skyline top"></div>
+  <div class="skyline bottom"></div>
+
+  <div class="rings">
+    <span></span><span></span><span></span><span></span>
+  </div>
+
+  <svg class="ksa-map" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <path d="M40 20 L120 15 L150 45 L170 90 L150 130 L160 160 L120 185 L80 170 L60 190
+             L35 160 L45 130 L25 110 L35 80 L20 60 L40 20 Z"
+          fill="none" stroke="#00ff85" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M60 60 L110 55 L130 90 L110 120 L70 115 L55 90 Z"
+          fill="none" stroke="#00ff85" stroke-width="1" opacity="0.6"/>
+  </svg>
+
+  <div class="particle" style="top:20%; left:15%; animation-delay:0s;"></div>
+  <div class="particle" style="top:65%; left:80%; animation-delay:1s;"></div>
+  <div class="particle" style="top:40%; left:70%; animation-delay:2s;"></div>
+  <div class="particle" style="top:75%; left:30%; animation-delay:1.5s;"></div>
+  <div class="particle" style="top:30%; left:50%; animation-delay:0.5s;"></div>
+  <div class="particle" style="top:85%; left:60%; animation-delay:2.5s;"></div>
+</div>
+<!-- ===== نهاية الخلفية ===== -->
+
+<nav>
+  <div class="logo-wrap">
+    <div class="logo-icon">
+      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M24 3 L42 11 V22 C42 33 34.5 41 24 45 C13.5 41 6 33 6 22 V11 L24 3 Z"
+              fill="rgba(0,255,133,0.10)" stroke="#00ff85" stroke-width="2"/>
+        <path d="M24 15 C24 15 20 19 20 24 C20 27 22 29 24 29 C26 29 28 27 28 24 C28 19 24 15 24 15 Z"
+              fill="none" stroke="#00ff85" stroke-width="1.5"/>
+        <path d="M17 33 C20 30 28 30 31 33" stroke="#00ff85" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="logo-text">
+      <span class="logo-name">الرياضة المدرسية السعودية </span>
+      <span class="logo-sub">SPORTS KSA</span>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#">منزل</a></li>
+    <li><a href="#">خدماتنا</a></li>
+    <li><a href="#">تواصل</a></li>
+    <li><a href="#">من نحن</a></li>
+  </ul>
+  <button class="btn-nav">ابدأ الآن</button>
+</nav>
+
+<!-- ===== الهيرو الرئيسي: شاشة اختيار نوع الدخول ===== -->
+<section class="hero">
+
+  <div class="select-title">
+    <h1>منصة الرياضة المدرسية <span class="em">للتلاميذ</span></h1>
+    <h2>المملكة العربية السعودية</h2>
+    <div class="select-divider"><span></span></div>
+    <p class="select-sub">يرجى اختيار نوع الدخول للمتابعة</p>
+  </div>
+
+  <div class="select-cards">
+
+    <!-- بطاقة المنتسبين -->
+    <div class="select-card is-green">
+      <div class="select-icon">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 10L12 5 2 10l10 5 10-5Z"/>
+          <path d="M6 12v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/>
+          <path d="M22 10v6"/>
+        </svg>
+      </div>
+      <h3>للمنتسبين</h3>
+      <p>للأساتذة، التلاميذ، والمدربين</p>
+      <button class="select-btn btn-green" type="button" onclick="window.location.href='file:///C:/Users/NetinfoTALI/Desktop/%D8%A5%D8%B3%D8%AA%D9%85%D8%A7%D8%B1%D8%A9%20%D8%A7%D9%84%D8%A7%D9%86%D8%AA%D8%B3%D8%A7%D8%A8%20.html'">دخول المنتسبين</button>
+    </div>
+
+    <!-- بطاقة العوام -->
+    <div class="select-card is-blue">
+      <div class="select-icon">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+      </div>
+      <h3>للعوام</h3>
+      <p>لجميع الزوار والمتابعين من عامة الجمهور</p>
+      <button class="select-btn btn-blue" type="button" onclick="alert('سيتم تزويدكم مستقبلا بالصفحة الرئيسية لأخبار الرياضة المدرسية في المملكة العربية السعودية')">دخول العوام</button>
+    </div>
+
+  </div>
+
+  <!-- اللوحة الزجاجية (معلومات الاتصال) -->
+  <div class="glass-scene">
+    <div class="glass-card" id="glassCard">
+
+      <div class="gc-contact-item">
+        <div class="gc-icon-3d"><div class="gc-icon-face">📍</div></div>
+        <div class="gc-contact-text"><span class="gc-contact-label">العنوان</span><span class="gc-contact-value">  جامعة الملك سعود كلية الرياضة الرياض المملكة العربية السعودية </span></div>
+      </div>
+
+      <div class="gc-nav-links">
+        <a href="#" class="gc-nav-link">الرئيسية</a>
+        <a href="#" class="gc-nav-link">سياسة الخصوصية</a>
+        <a href="#" class="gc-nav-link">تواصل معنا</a>
+        <a href="#" class="gc-nav-link">شروط الاستخدام</a>
+      </div>
+      <div class="gc-divider"></div>
+
+      <div class="gc-contact-item" style="margin-bottom:0;">
+        <div class="gc-icon-3d"><div class="gc-icon-face">✉️</div></div>
+        <div class="gc-contact-text"><span class="gc-contact-label">للتواصل عبر الإيميل</span><span class="gc-contact-value"><a href="mailto:info@example.com">info@example.com</a></span></div>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+<!-- ===== نهاية الهيرو ===== -->
+
+<!-- ===== الشريطان السفليان الثابتان ===== -->
+<div id="sticky-marquees">
+
+  <div class="marquee-regions">
+    <div class="marquee-track" id="regionsTrack">
+
+      <div class="region-card" style="--card-accent: rgba(0,255,133,0.6);">
+        <div class="region-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="#00ff85" stroke-width="2"><path d="M3 21h18M5 21V9l4-4 4 4v12M13 21V13h6v8"/></svg></div>
+        <div class="region-info"><span class="region-name">الرياض</span><span class="region-tag">العاصمة الإدارية</span></div>
+      </div>
+
+      <div class="region-card" style="--card-accent: rgba(0,196,106,0.6);">
+        <div class="region-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="#00ff85" stroke-width="2"><path d="M4 21c0-6 3-9 8-9s8 3 8 9M9 12V6a3 3 0 0 1 6 0v6"/></svg></div>
+        <div class="region-info"><span class="region-name">جدة</span><span class="region-tag">عروس البحر الأحمر</span></div>
+      </div>
+
+      <div class="region-card" style="--card-accent: rgba(0,255,163,0.6);">
+        <div class="region-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="#00ff85" stroke-width="2"><path d="M4 21V9l4-4h8l4 4v12M12 3v6M9 21v-6h6v6"/></svg></div>
+        <div class="region-info"><span class="region-name">الدمام</span><span class="region-tag">المنطقة الشرقية</span></div>
+      </div>
+
+      <div class="region-card" style="--card-accent: rgba(0,255,133,0.6);">
+        <div class="region-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="#00ff85" stroke-width="2"><rect x="7" y="8" width="10" height="12"/><path d="M9 8V5h6v3M12 3v2M4 21h16"/></svg></div>
+        <div class="region-info"><span class="region-name">مكة المكرمة</span><span class="region-tag">الحرم الشريف</span></div>
+      </div>
+
+      <div class="region-card" style="--card-accent: rgba(0,196,106,0.6);">
+        <div class="region-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="#00ff85" stroke-width="2"><path d="M4 21V10l8-6 8 6v11M9 21v-6h6v6M9 10h.01M15 10h.01"/></svg></div>
+        <div class="region-info"><span class="region-name">المدينة المنورة</span><span class="region-tag">المسجد النبوي</span></div>
+      </div>
+
+      <div class="region-card" style="--card-accent: rgba(0,255,163,0.6);">
+        <div class="region-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="#00ff85" stroke-width="2"><path d="M3 21l4-14 4 8 3-6 4 12M3 21h18"/></svg></div>
+        <div class="region-info"><span class="region-name">أبها</span><span class="region-tag">عسير الخضراء</span></div>
+      </div>
+
+      <div class="region-card" style="--card-accent: rgba(0,255,133,0.6);">
+        <div class="region-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="#00ff85" stroke-width="2"><path d="M3 21h18M5 21V9l4-4 4 4v12M13 21V13h6v8"/></svg></div>
+        <div class="region-info"><span class="region-name">الرياض</span><span class="region-tag">حي العليا</span></div>
+      </div>
+
+      <div class="region-card" style="--card-accent: rgba(0,196,106,0.6);">
+        <div class="region-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="#00ff85" stroke-width="2"><path d="M4 21c0-6 3-9 8-9s8 3 8 9M9 12V6a3 3 0 0 1 6 0v6"/></svg></div>
+        <div class="region-info"><span class="region-name">جدة</span><span class="region-tag">الكورنيش</span></div>
+      </div>
+
+      <div class="region-card" style="--card-accent: rgba(0,255,163,0.6);">
+        <div class="region-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="#00ff85" stroke-width="2"><path d="M4 21V9l4-4h8l4 4v12M12 3v6M9 21v-6h6v6"/></svg></div>
+        <div class="region-info"><span class="region-name">الدمام</span><span class="region-tag">الخبر</span></div>
+      </div>
+
+      <div class="region-card" style="--card-accent: rgba(0,255,133,0.6);">
+        <div class="region-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="#00ff85" stroke-width="2"><rect x="7" y="8" width="10" height="12"/><path d="M9 8V5h6v3M12 3v2M4 21h16"/></svg></div>
+        <div class="region-info"><span class="region-name">مكة المكرمة</span><span class="region-tag">الطائف</span></div>
+      </div>
+
+      <div class="region-card" style="--card-accent: rgba(0,196,106,0.6);">
+        <div class="region-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="#00ff85" stroke-width="2"><path d="M4 21V10l8-6 8 6v11M9 21v-6h6v6M9 10h.01M15 10h.01"/></svg></div>
+        <div class="region-info"><span class="region-name">المدينة المنورة</span><span class="region-tag">تبوك</span></div>
+      </div>
+
+      <div class="region-card" style="--card-accent: rgba(0,255,163,0.6);">
+        <div class="region-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="#00ff85" stroke-width="2"><path d="M3 21l4-14 4 8 3-6 4 12M3 21h18"/></svg></div>
+        <div class="region-info"><span class="region-name">أبها</span><span class="region-tag">نجران</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="marquee-features">
+    <div class="marquee-track-2">
+      <span class="feature-marquee-item">🔒 بيانات آمنة <span class="feature-marquee-dot">✦</span></span>
+      <span class="feature-marquee-item">🤖 ذكاء اصطناعي متقدم <span class="feature-marquee-dot">✦</span></span>
+      <span class="feature-marquee-item">🇸🇦 سيادة رقمية <span class="feature-marquee-dot">✦</span></span>
+      <span class="feature-marquee-item">🔗 ربط وطني شامل <span class="feature-marquee-dot">✦</span></span>
+      <span class="feature-marquee-item">🔒 بيانات آمنة <span class="feature-marquee-dot">✦</span></span>
+      <span class="feature-marquee-item">🤖 ذكاء اصطناعي متقدم <span class="feature-marquee-dot">✦</span></span>
+      <span class="feature-marquee-item">🇸🇦 سيادة رقمية <span class="feature-marquee-dot">✦</span></span>
+      <span class="feature-marquee-item">🔗 ربط وطني شامل <span class="feature-marquee-dot">✦</span></span>
+    </div>
+  </div>
+
+</div>
+<!-- ===== نهاية الشريطين السفليين ===== -->
+
+<script>
+  const glassCard = document.getElementById('glassCard');
+  if (window.innerWidth > 768) {
+    document.addEventListener('mousemove', e => {
+      const cx = window.innerWidth  / 2;
+      const cy = window.innerHeight / 2;
+      const dx = (e.clientX - cx) / cx;
+      const dy = (e.clientY - cy) / cy;
+      const rx =  dy * -6;
+      const ry =  dx *  6;
+      glassCard.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+      glassCard.style.boxShadow = `0 2px 0 rgba(0,255,133,0.35) inset, ${-ry * 2}px ${rx * 2 + 32}px 64px rgba(0,60,35,0.35), 0 8px 24px rgba(0,60,35,0.22), 0 1px 0 rgba(0,255,133,0.25) inset`;
+    });
+    document.addEventListener('mouseleave', () => {
+      glassCard.style.transform = 'rotateX(4deg) rotateY(-2deg)';
+      glassCard.style.transition = 'transform 1s cubic-bezier(.22,1,.36,1), box-shadow 1s ease';
+    });
+  }
+</script>
+
+<script>
+  (function() {
+    const track = document.getElementById('regionsTrack');
+    if (!track) return;
+    function ensureInfiniteLoop() {
+      const trackWidth = track.scrollWidth;
+      const viewportWidth = window.innerWidth;
+      const minTrackWidth = viewportWidth * 2.5;
+      if (trackWidth < minTrackWidth) {
+        const originalHTML = track.innerHTML;
+        let currentWidth = trackWidth;
+        while (currentWidth < minTrackWidth) {
+          track.insertAdjacentHTML('beforeend', originalHTML);
+          currentWidth = track.scrollWidth;
+        }
+        const baseWidth = 3000;
+        const baseDuration = 22;
+        const newDuration = Math.max(baseDuration, (currentWidth / baseWidth) * baseDuration * 0.6);
+        track.style.animationDuration = newDuration + 's';
+      }
+    }
+    window.addEventListener('load', ensureInfiniteLoop);
+    let resizeTimer;
+    window.addEventListener('resize', function() { clearTimeout(resizeTimer); resizeTimer = setTimeout(ensureInfiniteLoop, 250); });
+    if (document.readyState === 'complete') { ensureInfiniteLoop(); }
+  })();
+</script>
+
+</body>
+</html>
